@@ -28,5 +28,6 @@ public class RunApp {
         System.out.println("p1 equals p2 is " + p1.equals(p2));
         System.out.println("p1 equals p3 is " + p1.equals(p3));
 
+        Imutable imute = new Imutable(1, 2);
     }
 }

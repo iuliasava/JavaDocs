@@ -30,6 +30,32 @@ public class Circle extends Shape {
         this.radius =radius;
     }
 
+    public void function() throws Except {
+        Circle circle = new Circle();
+
+        if(circle.area() != 3){
+            throw new ExtendExcept();
+        }
+        else {
+            if (circle.area() < 5) {
+                throw new Except();
+            }
+        }
+    }
+
+    public void tryCatchFunction() {
+        Circle circle = new Circle();
+
+        try {
+            circle.area();
+            if (circle.area() < 5)
+                {throw new Except();}
+        } catch (ExtendExcept e){
+        } catch (Except e){
+        } finally{
+            System.out.println("Final");
+        }
+    }
 
     @Override
     public double area() {
