@@ -1,9 +1,6 @@
 package exercise.exercise3;
 
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  * Created by Radu.Hoaghe on 04/20/2015.
@@ -33,8 +30,10 @@ public class Exercise3 {
     public void addElementsToSets(){
 
         TreeSet<String> tree = new TreeSet<String>();
+        TreeSet<String> trees = new TreeSet<String>(new Comp());
         HashSet<String> hash = new HashSet<String>();
         LinkedHashSet<String> link = new LinkedHashSet<String>();
+
 
         System.out.println("The elements that will be added to the Sets: " + listToAdd);
         // TODO Exercise #3 a) Check the content of the elements you will add into the Set
@@ -42,10 +41,13 @@ public class Exercise3 {
         // TODO Exercise #3 b) add the elements from listToAdd to the Sets
 
         // TODO Exercise #3 c) Check the content of the Sets
-        for(String s : listToAdd)
+        for(String s : listToAdd) {
             tree.add(s);
+            trees.add(s);
+        }
 
         System.out.println("\nThe elements contained in the first Set: " + tree);
+        System.out.println("\nThe elements contained in the first Set: " + trees);
 
         for(String s : listToAdd)
             hash.add(s);
@@ -63,5 +65,16 @@ public class Exercise3 {
 
         // TODO Exercise #3 d) Add to the TreeSet two elements that already exist in the Set
         // TODO Exercise #3 d) and print again the TreeSet. What do you see?
+    }
+}
+
+class Comp implements Comparator<String>{
+
+    public int compare(String o1, String o2) {
+        if(o1.length()<o2.length())
+            return -1;
+        if(o1.length()>o2.length())
+            return 1;
+        return 0;
     }
 }
