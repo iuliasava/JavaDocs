@@ -1,7 +1,9 @@
         package ro.teamnet.zth;
 
+        import org.codehaus.jackson.map.ObjectMapper;
         import ro.teamnet.zth.api.annotations.MyController;
         import ro.teamnet.zth.api.annotations.MyRequestMethod;
+        import ro.teamnet.zth.api.annotations.MyRequestParam;
         import ro.teamnet.zth.appl.controller.DepartmentController;
         import ro.teamnet.zth.appl.controller.EmployeeController;
         import ro.teamnet.zth.fmk.AnnotationScanUtils;
@@ -15,7 +17,10 @@
         import java.io.PrintWriter;
         import java.lang.reflect.InvocationTargetException;
         import java.lang.reflect.Method;
+        import java.lang.reflect.Parameter;
+        import java.util.ArrayList;
         import java.util.HashMap;
+        import java.util.List;
         import java.util.Map;
 
         /**
@@ -36,6 +41,11 @@
             }
 
             @Override
+            protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+                dispatchReply("DELETE", req, resp);
+            }
+
+            @Override
             public void init() throws ServletException {
                 try {
                     Iterable<Class> controllers = AnnotationScanUtils.getClasses("ro.teamnet.zth.appl.controller");
@@ -53,6 +63,7 @@
                                     methodAttributes.setControllerClass(controller.getName());
                                     methodAttributes.setMethodType(myRequestMethod.toString());
                                     methodAttributes.setMethodName(controllerMethod.getName());
+                                    methodAttributes.setParameterTypes(controllerMethod.getParameterTypes());
 
                                     allowedMethods.put(urlPath, methodAttributes);
                                 }
@@ -89,8 +100,21 @@
                     try {
                         Class<?> controllerClass = Class.forName(controllerName);
                         Object controllerInstance = controllerClass.newInstance();
-                        Method method = controllerClass.getMethod(methodAttributes.getMethodName());
-                        Object r = method.invoke(controllerInstance);
+                        Method method = controllerClass.getMethod(methodAttributes.getMethodName(), methodAttributes.getParameterTypes());
+
+                        List<Object> parameterValues = new ArrayList<>();
+                        for(Parameter p : method.getParameters()){
+                            if(p.isAnnotationPresent(MyRequestParam.class)){
+                                MyRequestParam annotation = p.getAnnotation(MyRequestParam.class);
+                                String name = annotation.name();
+                                String requestParamValue = req.getParameter(name);
+                                Class<?> type = p.getType();
+                                Object requestParamObject = new ObjectMapper().readValue(requestParamValue, type);
+                                parameterValues.add(requestParamObject);
+                            }
+                        }
+
+                        Object r = method.invoke(controllerInstance, parameterValues.toArray());
                         return r;
                     } catch (InvocationTargetException e) {
                         e.printStackTrace();
@@ -110,8 +134,9 @@
 
 
             protected void reply(Object r, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+                ObjectMapper objectMapper = new ObjectMapper();
                 PrintWriter pr = resp.getWriter();
-                pr.printf(r.toString());
+                pr.printf(objectMapper.writeValueAsString(r));
             }
 
             protected void sendExceptionError(Exception e, HttpServletRequest req, HttpServletResponse resp)  {
