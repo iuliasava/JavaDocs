@@ -13,6 +13,7 @@ ro\teamnet\zth\appl\dao\EmployeeDao.class
 ro\teamnet\zth\appl\dao\DepartmentDao.class
 ro\teamnet\zth\api\database\DBProperties.class
 ro\teamnet\zth\appl\Service\EmployeeService.class
+ro\teamnet\zth\appl\Service\JobServiceImpl.class
 ro\teamnet\zth\api\em\EntityManagerImpl.class
 ro\teamnet\zth\appl\Service\EmployeeServiceImpl.class
 ro\teamnet\zth\api\annotations\Id.class
@@ -23,10 +24,12 @@ ro\teamnet\zth\api\em\QueryBuilder.class
 ro\teamnet\zth\appl\domain\Location.class
 ro\teamnet\zth\api\em\ColumnInfo.class
 ro\teamnet\zth\appl\dao\JobDao.class
+ro\teamnet\zth\appl\Service\JobService.class
 ro\teamnet\zth\api\annotations\Table.class
 ro\teamnet\zth\api\em\Condition.class
 ro\teamnet\zth\api\em\EntityManager.class
 ro\teamnet\zth\api\em\EntityUtils.class
 ro\teamnet\zth\appl\domain\Job.class
 ro\teamnet\zth\api\annotations\Column.class
+ro\teamnet\zth\api\annotations\MyBodyParam.class
 ro\teamnet\zth\fmk\AnnotationScanUtils.class

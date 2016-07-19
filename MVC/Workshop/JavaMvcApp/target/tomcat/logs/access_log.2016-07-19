@@ -1,0 +1,7 @@
+0:0:0:0:0:0:0:1 - - [19/Jul/2016:12:55:53 +0300] "GET /app/mvc/jobs/all HTTP/1.1" 200 1585 http-bio-8090-exec-1 573
+0:0:0:0:0:0:0:1 - - [19/Jul/2016:12:55:55 +0300] "GET /app/mvc/jobs/one?id=AD_PRES HTTP/1.1" 200 75 http-bio-8090-exec-2 35
+0:0:0:0:0:0:0:1 - - [19/Jul/2016:12:56:01 +0300] "OPTIONS /app/mvc/jobs/edit HTTP/1.1" 200 - http-bio-8090-exec-3 1
+0:0:0:0:0:0:0:1 - - [19/Jul/2016:12:56:01 +0300] "PUT /app/mvc/jobs/edit HTTP/1.1" 200 4 http-bio-8090-exec-4 84
+0:0:0:0:0:0:0:1 - - [19/Jul/2016:12:56:01 +0300] "GET /app/mvc/jobs/one?id=undefined HTTP/1.1" 200 4 http-bio-8090-exec-5 33
+0:0:0:0:0:0:0:1 - - [19/Jul/2016:12:56:02 +0300] "GET /app/mvc/jobs/all HTTP/1.1" 200 1585 http-bio-8090-exec-6 38
+0:0:0:0:0:0:0:1 - - [19/Jul/2016:12:56:06 +0300] "GET /app/mvc/jobs/all HTTP/1.1" 200 1585 http-bio-8090-exec-7 29

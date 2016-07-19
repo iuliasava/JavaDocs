@@ -24,7 +24,10 @@ C:\Users\user\Desktop\JavaDocs\MVC\Workshop\JavaMvcApp\src\main\java\ro\teamnet\
 C:\Users\user\Desktop\JavaDocs\MVC\Workshop\JavaMvcApp\src\main\java\ro\teamnet\zth\appl\dao\JobDao.java
 C:\Users\user\Desktop\JavaDocs\MVC\Workshop\JavaMvcApp\src\main\java\ro\teamnet\zth\appl\domain\Employee.java
 C:\Users\user\Desktop\JavaDocs\MVC\Workshop\JavaMvcApp\src\main\java\ro\teamnet\zth\api\em\EntityManager.java
+C:\Users\user\Desktop\JavaDocs\MVC\Workshop\JavaMvcApp\src\main\java\ro\teamnet\zth\appl\Service\JobService.java
 C:\Users\user\Desktop\JavaDocs\MVC\Workshop\JavaMvcApp\src\main\java\ro\teamnet\zth\api\em\ColumnInfo.java
+C:\Users\user\Desktop\JavaDocs\MVC\Workshop\JavaMvcApp\src\main\java\ro\teamnet\zth\api\annotations\MyBodyParam.java
+C:\Users\user\Desktop\JavaDocs\MVC\Workshop\JavaMvcApp\src\main\java\ro\teamnet\zth\appl\Service\JobServiceImpl.java
 C:\Users\user\Desktop\JavaDocs\MVC\Workshop\JavaMvcApp\src\main\java\ro\teamnet\zth\api\database\DBProperties.java
 C:\Users\user\Desktop\JavaDocs\MVC\Workshop\JavaMvcApp\src\main\java\ro\teamnet\zth\api\em\QueryType.java
 C:\Users\user\Desktop\JavaDocs\MVC\Workshop\JavaMvcApp\src\main\java\ro\teamnet\zth\appl\controller\EmployeeController.java

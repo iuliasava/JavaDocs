@@ -1,6 +1,7 @@
         package ro.teamnet.zth;
 
         import org.codehaus.jackson.map.ObjectMapper;
+        import ro.teamnet.zth.api.annotations.MyBodyParam;
         import ro.teamnet.zth.api.annotations.MyController;
         import ro.teamnet.zth.api.annotations.MyRequestMethod;
         import ro.teamnet.zth.api.annotations.MyRequestParam;
@@ -13,6 +14,7 @@
         import javax.servlet.http.HttpServlet;
         import javax.servlet.http.HttpServletRequest;
         import javax.servlet.http.HttpServletResponse;
+        import java.io.BufferedReader;
         import java.io.IOException;
         import java.io.PrintWriter;
         import java.lang.reflect.InvocationTargetException;
@@ -33,7 +35,7 @@
             @Override
             protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
                 dispatchReply("GET", req, resp);
-            }
+        }
 
             @Override
             protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -43,6 +45,11 @@
             @Override
             protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
                 dispatchReply("DELETE", req, resp);
+            }
+
+            @Override
+            protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+                dispatchReply("PUT", req, resp);
             }
 
             @Override
@@ -109,8 +116,21 @@
                                 String name = annotation.name();
                                 String requestParamValue = req.getParameter(name);
                                 Class<?> type = p.getType();
-                                Object requestParamObject = new ObjectMapper().readValue(requestParamValue, type);
+                                Object requestParamObject = null;
+                                if(type.equals(String.class)){
+                                    requestParamObject = requestParamValue;
+                                }
+                                else {
+                                    requestParamObject = new ObjectMapper().readValue(requestParamValue, type);
+                                }
                                 parameterValues.add(requestParamObject);
+                            }
+                            else{
+                                if(p.isAnnotationPresent(MyBodyParam.class)){
+                                    BufferedReader requestBodyReader = req.getReader();
+                                    Object requestBodyObject =  new ObjectMapper().readValue(requestBodyReader, p.getType());
+                                    parameterValues.add(requestBodyObject);
+                                }
                             }
                         }
 
